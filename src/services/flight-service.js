@@ -19,7 +19,7 @@ class FlightService {
             });
             return flight;
         } catch (error) {
-            console.log("Something went wrong in the repository layer");
+            console.log("Something went wrong in the service layer");
             throw {error};
         }
     }
@@ -29,11 +29,32 @@ class FlightService {
             const flights = await this.flightrepository.getAllFlights(data);
             return flights;
         } catch (error) {
-            console.log("Something went wrong in the repository layer");
+            console.log("Something went wrong in the service layer");
+            throw {error};
+        }
+    }
+
+    async getFlight(flightId) {
+        try{
+            const flight = await this.flightrepository.getFlight(flightId);
+            return flight;
+        } catch (error) {
+            console.log("Something went wrong in the service layer");
+            throw {error};
+        }
+    }
+
+    async updateFlight(flightId, data) {
+        try{
+            const response = await this.flightrepository.updateFlight(flightId, data);
+            return response;
+        } catch (error) {
+            console.log("Something went wrong in the service layer");
             throw {error};
         }
     }
 }
+
 
 module.exports = FlightService;
 
